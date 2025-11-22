@@ -1,0 +1,30 @@
+{{products.length}}
+<div class="card">
+  <p-table
+    [value]="products"
+    [(selection)]="selectedProducts"
+    dataKey="code"
+    [columns]="columnDefinition"
+    [tableStyle]=""
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 4rem"><p-tableHeaderCheckbox /></th>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Quantity</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product let-columns="columns">
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="product" />
+        </td>
+        @for (col of columns; track col) {
+        <td>{{ product[col.field] }}</td>
+        }
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
