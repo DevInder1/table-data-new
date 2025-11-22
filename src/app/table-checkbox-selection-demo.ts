@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ImportsModule } from './imports';
 import { Product } from '@domain/product';
 import { ProductService } from '@service/productservice';
@@ -8,6 +8,7 @@ import { ProductService } from '@service/productservice';
   standalone: true,
   imports: [ImportsModule],
   providers: [ProductService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableCheckboxSelectionDemo implements OnInit {
   products!: Product[];
@@ -26,7 +27,7 @@ export class TableCheckboxSelectionDemo implements OnInit {
     },
   ];
 
-  selectedProducts!: [];
+  selectedProducts: Product[] = [];
 
   constructor(private productService: ProductService) {}
 
@@ -34,5 +35,10 @@ export class TableCheckboxSelectionDemo implements OnInit {
     this.productService.getProducts().then((data) => {
       this.products = data;
     });
+  }
+
+  // TrackBy function for optimal rendering
+  trackByCode(index: number, product: Product): string {
+    return product.code || index.toString();
   }
 }
