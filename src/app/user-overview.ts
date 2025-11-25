@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { TableCheckboxSelectionDemo } from './table-checkbox-selection-demo';
+import { FlexComponent } from './flex-component';
 import { Product } from '@domain/product';
 import { ProductService } from '@service/productservice';
 import { ImportsModule } from './imports';
@@ -9,11 +10,12 @@ import { ImportsModule } from './imports';
   templateUrl: 'user-overview.html',
   styleUrls: ['user-overview.scss'],
   standalone: true,
-  imports: [TableCheckboxSelectionDemo, ImportsModule],
+  imports: [FlexComponent, ImportsModule],
   providers: [ProductService],
 })
 export class UserOverview implements OnInit {
   products: Product[] = [];
+  selectedProducts: Product[] = [];
   displayDialog: boolean = false;
   columnDefinition = [
     {
@@ -45,7 +47,13 @@ export class UserOverview implements OnInit {
 
   showDialog() {
     console.log('Opening dialog with products:', this.products.length);
+    console.log('Current selections:', this.selectedProducts.length);
     this.displayDialog = true;
     this.cdr.markForCheck();
+  }
+
+  onSelectionChange(selection: Product[]) {
+    this.selectedProducts = selection;
+    console.log('Parent - Selection updated:', this.selectedProducts.length);
   }
 }

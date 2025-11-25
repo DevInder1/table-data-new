@@ -1,6 +1,6 @@
 <div class="user-overview-container">
   <h2>User Overview</h2>
-  <p>Products loaded: {{ products.length }}</p>
+  <p>Products loaded: {{ products.length }} | Selected: {{ selectedProducts.length }}</p>
   
   <p-button 
     label="Show Table" 
@@ -9,23 +9,13 @@
     [disabled]="products.length === 0">
   </p-button>
 
-  <p-dialog 
-    header="User Data Table ({{ products.length }} records)" 
-    [(visible)]="displayDialog" 
-    [modal]="true" 
-    [style]="{width: '95vw', height: '90vh'}" 
-    [maximizable]="true"
-    [draggable]="true"
-    [resizable]="true"
-    [baseZIndex]="10000"
-    styleClass="table-dialog">
-    <ng-container *ngIf="displayDialog">
-      <table-checkbox-selection-demo 
-        [products]="products" 
-        [columnDefinition]="columnDefinition">
-      </table-checkbox-selection-demo>
-    </ng-container>
-  </p-dialog>
+  <flex-component
+    [(visible)]="displayDialog"
+    [products]="products"
+    [selectedProducts]="selectedProducts"
+    (selectedProductsChange)="onSelectionChange($event)"
+    [columnDefinition]="columnDefinition">
+  </flex-component>
 </div>
 
 

@@ -1,0 +1,20 @@
+<p-dialog 
+  header="User Data Table ({{ products.length }} records)" 
+  [(visible)]="visible"
+  (visibleChange)="onHide()"
+  [modal]="true" 
+  [style]="{width: '95vw', height: '90vh'}" 
+  [maximizable]="true"
+  [draggable]="true"
+  [resizable]="true"
+  [baseZIndex]="10000"
+  styleClass="table-dialog">
+  <ng-container *ngIf="visible">
+    <table-checkbox-selection-demo 
+      [products]="products" 
+      [columnDefinition]="columnDefinition"
+      [selectedProducts]="selectedProducts"
+      (selectedProductsChange)="onSelectionChange($event)">
+    </table-checkbox-selection-demo>
+  </ng-container>
+</p-dialog>

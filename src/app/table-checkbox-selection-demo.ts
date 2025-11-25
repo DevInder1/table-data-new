@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, ChangeDetectorRef, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef, OnChanges, SimpleChanges } from '@angular/core';
 import { ImportsModule } from './imports';
 import { Product } from '@domain/product';
 import { ProductService } from '@service/productservice';
@@ -18,10 +18,12 @@ interface ColumnDefinition {
   standalone: true,
   imports: [ImportsModule, CommonModule],
   providers: [ProductService],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableCheckboxSelectionDemo implements OnInit, OnChanges {
   @Input() products: Product[] = [];
+  @Input() selectedProducts: Product[] = [];
+  @Output() selectedProductsChange = new EventEmitter<Product[]>();
+  
   @Input() columnDefinition: ColumnDefinition[] = [
     {
       field: 'code',
@@ -37,8 +39,6 @@ export class TableCheckboxSelectionDemo implements OnInit, OnChanges {
     },
   ];
 
-  selectedProducts: Product[] = [];
-
   constructor(
     private productService: ProductService,
     private cdr: ChangeDetectorRef
@@ -46,6 +46,7 @@ export class TableCheckboxSelectionDemo implements OnInit, OnChanges {
 
   ngOnInit() {
     console.log('[Table] ngOnInit - Products:', this.products?.length || 0);
+    console.log('[Table] ngOnInit - Selected:', this.selectedProducts?.length || 0);
     
     // Only fetch products if not provided via Input
     if (!this.products || this.products.length === 0) {
@@ -62,6 +63,16 @@ export class TableCheckboxSelectionDemo implements OnInit, OnChanges {
       console.log('[Table] Products changed:', this.products?.length || 0);
       this.cdr.detectChanges();
     }
+    if (changes['selectedProducts']) {
+      console.log('[Table] Selected products changed:', this.selectedProducts?.length || 0);
+      this.cdr.detectChanges();
+    }
+  }
+
+  onSelectionChange(event: any) {
+    console.log('[Table] Selection changed:', this.selectedProducts.length);
+    this.selectedProductsChange.emit(this.selectedProducts);
+    this.cdr.detectChanges();
   }
 
   // TrackBy function for optimal rendering
