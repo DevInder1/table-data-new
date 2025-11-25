@@ -18,4 +18,61 @@ body {
     border-radius: 10px;
     margin-bottom: 1rem;
 }
+
+/* Specific styles for checkbox-selection-table component only */
+.checkbox-selection-table {
+    .p-datatable-wrapper {
+        max-height: 500px;
+    }
+    
+    .p-datatable-thead > tr > th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background: var(--surface-card);
+    }
+
+    .p-virtualscroller {
+        height: 500px !important;
+    }
+
+    .p-virtualscroller-content {
+        height: auto !important;
+    }
+}
+
+/* Alternative: Target by PrimeNG styleClass attribute */
+.checkbox-selection-datatable {
+    .p-datatable-wrapper {
+        max-height: 500px;
+    }
+    
+    .p-virtualscroller {
+        height: 500px !important;
+    }
+
+    .p-virtualscroller-content {
+        height: auto !important;
+    }
+}
+
+/* Scoped styles for tables in dialogs */
+.table-dialog {
+    .p-dialog-content {
+        height: calc(90vh - 130px) !important;
+        overflow: hidden !important;
+        padding: 0 !important;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .p-dialog-header {
+        flex-shrink: 0;
+    }
+    
+    /* Only for checkbox selection table in dialog */
+    .checkbox-selection-table .p-datatable-wrapper {
+        overflow-y: auto;
+    }
+}
     

@@ -1,4 +1,4 @@
-<div class="table-container">
+<div class="table-container checkbox-selection-table">
   <div class="info-bar">
     <strong>{{products?.length || 0}} products loaded</strong> | 
     <span>{{selectedProducts?.length || 0}} selected</span>
@@ -15,6 +15,7 @@
     [lazy]="false"
     [paginator]="false"
     [showCurrentPageReport]="false"
+    styleClass="checkbox-selection-datatable"
   >
     <ng-template pTemplate="header">
       <tr>

@@ -1,19 +1,20 @@
 .user-overview-container {
   padding: 2rem;
+
+  p {
+    margin: 1rem 0;
+    font-size: 1rem;
+    color: #6c757d;
+  }
+
+  h2 {
+    margin-bottom: 1rem;
+    color: #212529;
+  }
 }
 
-::ng-deep {
-  .table-dialog {
-    .p-dialog-content {
-      height: calc(90vh - 130px) !important;
-      overflow: hidden !important;
-      padding: 0 !important;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .p-dialog-header {
-      flex-shrink: 0;
-    }
-  }
+/* Host-level styling */
+:host {
+  display: block;
+  width: 100%;
 }
