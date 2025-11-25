@@ -11,10 +11,14 @@
 
   <flex-component
     [(visible)]="displayDialog"
-    [products]="products"
-    [selectedProducts]="selectedProducts"
-    (selectedProductsChange)="onSelectionChange($event)"
-    [columnDefinition]="columnDefinition">
+    [products]="products">
+    <table-checkbox-selection-demo 
+      *ngIf="displayDialog"
+      [products]="products" 
+      [columnDefinition]="columnDefinition"
+      [selectedProducts]="selectedProducts"
+      (selectedProductsChange)="onSelectionChange($event)">
+    </table-checkbox-selection-demo>
   </flex-component>
 </div>
 

@@ -10,7 +10,7 @@ import { ImportsModule } from './imports';
   templateUrl: 'user-overview.html',
   styleUrls: ['user-overview.scss'],
   standalone: true,
-  imports: [FlexComponent, ImportsModule],
+  imports: [TableCheckboxSelectionDemo, FlexComponent, ImportsModule],
   providers: [ProductService],
 })
 export class UserOverview implements OnInit {
