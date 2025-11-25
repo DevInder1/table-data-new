@@ -1,4 +1,7 @@
 node_modules
 
+# Angular build cache
+.angular/
+
 # Ignore JSON files
 *.json

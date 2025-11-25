@@ -1,0 +1,33 @@
+.table-container {
+  width: 100%;
+  
+  .info-bar {
+    padding: 1rem;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px 4px 0 0;
+    margin-bottom: -1px;
+  }
+
+  ::ng-deep {
+    .p-datatable {
+      .p-datatable-wrapper {
+        max-height: 500px;
+      }
+      
+      .p-datatable-thead > tr > th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+
+      .p-virtualscroller {
+        height: 500px !important;
+      }
+
+      .p-virtualscroller-content {
+        height: auto !important;
+      }
+    }
+  }
+}

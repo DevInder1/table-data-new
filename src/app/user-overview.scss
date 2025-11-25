@@ -1,0 +1,19 @@
+.user-overview-container {
+  padding: 2rem;
+}
+
+::ng-deep {
+  .table-dialog {
+    .p-dialog-content {
+      height: calc(90vh - 130px) !important;
+      overflow: hidden !important;
+      padding: 0 !important;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .p-dialog-header {
+      flex-shrink: 0;
+    }
+  }
+}

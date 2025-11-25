@@ -1,19 +1,26 @@
-{{products.length}}
-<div class="card">
+<div class="table-container">
+  <div class="info-bar">
+    <strong>{{products?.length || 0}} products loaded</strong> | 
+    <span>{{selectedProducts?.length || 0}} selected</span>
+  </div>
+  
   <p-table
     [value]="products"
     [(selection)]="selectedProducts"
     dataKey="code"
     [columns]="columnDefinition"
-    [tableStyle]=""
     [virtualScroll]="true"
-    [scrollHeight]="'600px'"
+    [scrollHeight]="'500px'"
     [rows]="100"
     [lazy]="false"
+    [paginator]="false"
+    [showCurrentPageReport]="false"
   >
     <ng-template pTemplate="header">
       <tr>
-        <th style="width: 4rem"><p-tableHeaderCheckbox /></th>
+        <th style="width: 4rem">
+          <p-tableHeaderCheckbox />
+        </th>
         <th>Code</th>
         <th>Name</th>
         <th>Category</th>
@@ -21,14 +28,22 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-product let-columns="columns">
-      <tr>
+      <tr [pSelectableRow]="product">
         <td>
           <p-tableCheckbox [value]="product" />
         </td>
-        @for (col of columns; track col.field) {
-        <td>{{ product[col.field] }}</td>
-        }
+        <td>{{ product.code }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.category }}</td>
+        <td>{{ product.quantity }}</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="5">No products found.</td>
       </tr>
     </ng-template>
   </p-table>
 </div>
+
+
