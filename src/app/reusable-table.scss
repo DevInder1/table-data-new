@@ -5,4 +5,74 @@
 
 .reusable-table {
   width: 100%;
+
+  input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid #ced4da;
+    border-radius: 4px;
+    background-color: #ffffff;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    vertical-align: middle;
+
+    &:hover {
+      border-color: #2196F3;
+    }
+
+    &:focus {
+      outline: 0 none;
+      outline-offset: 0;
+      box-shadow: 0 0 0 0.2rem rgba(33, 150, 243, 0.25);
+      border-color: #2196F3;
+    }
+
+    &:checked {
+      background-color: #2196F3;
+      border-color: #2196F3;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 0.375rem;
+        height: 0.625rem;
+        border: solid #ffffff;
+        border-width: 0 2px 2px 0;
+        transform: translate(-50%, -60%) rotate(45deg);
+      }
+
+      &:hover {
+        background-color: #0b7ad1;
+        border-color: #0b7ad1;
+      }
+    }
+
+    &:indeterminate {
+      background-color: #2196F3;
+      border-color: #2196F3;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 0.625rem;
+        height: 2px;
+        background-color: #ffffff;
+      }
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: default;
+    }
+  }
 }

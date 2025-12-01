@@ -37,7 +37,7 @@ export class ReusableTable {
       // Item is not selected, add it
       newSelection = [...this.selectedItems, rowData];
     }
-    
+    console.log(newSelection)
     this.selectedItemsChange.emit(newSelection);
   }
 
@@ -54,7 +54,7 @@ export class ReusableTable {
       // Select all
       newSelection = [...this.data];
     }
-    
+      console.log(newSelection)
     this.selectedItemsChange.emit(newSelection);
   }
 
