@@ -1,0 +1,12 @@
+<div class="company-overview-container">
+  <h2>Company Overview</h2>
+  <p>Total Companies: {{ companies.length }} | Selected: {{ selectedCompanies.length }}</p>
+
+  <reusable-table
+    [data]="companies"
+    [columns]="columnDefinition"
+    [(selectedItems)]="selectedCompanies"
+    [dataKey]="'id'"
+    [showCheckbox]="true">
+  </reusable-table>
+</div>
